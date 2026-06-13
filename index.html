@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
 
@@ -229,6 +229,7 @@
       </div>
 
       <form class="contact-form reveal" id="contactForm" novalidate>
+        <input type="hidden" name="_subject" value="connfig 홈페이지 문의" />
         <div class="field">
           <span class="field-label">공간 유형</span>
           <div class="chips" role="radiogroup" aria-label="공간 유형">
@@ -250,6 +251,11 @@
             <label class="chip"><input type="radio" name="scope" value="설계만" /><span>설계만</span></label>
             <label class="chip"><input type="radio" name="scope" value="설계+시공" /><span>설계 + 시공</span></label>
           </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="contactInfo">연락받을 방법 <span class="field-optional">(선택)</span></label>
+          <input type="text" id="contactInfo" name="contactInfo" placeholder="이메일, 전화번호, 인스타 아이디 등 편하신 방법으로" />
         </div>
 
         <div class="field">
@@ -286,6 +292,6 @@
   <!-- ============ 플로팅 상담 버튼 ============ -->
   <a href="#contact" class="float-contact"><span class="nn">nn</span> 상담 문의</a>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

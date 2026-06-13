@@ -4,6 +4,14 @@
 (function () {
   "use strict";
 
+  /* ---------- 문의 폼 전송 주소 ----------
+     Formspree(https://formspree.io)에서 무료로 폼을 만들면
+     "https://formspree.io/f/xxxxxxxx" 형태의 주소를 받습니다.
+     그 주소를 아래 빈 칸에 넣으면 문의 폼이 실제로 작동합니다.
+     비워두면(="") 화면에는 정상처럼 보이지만 실제로는 전송되지 않습니다.
+  -------------------------------------------------- */
+  var FORM_ENDPOINT = "";
+
   /* ---------- 현재 연도 ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -186,13 +194,11 @@
     });
   }
 
-  /* ---------- 문의 폼 처리 ----------
-     v1은 정적 사이트라 백엔드가 없습니다.
-     실제 발송은 Formspree / Google Form / 자체 API 중 하나로 연결하세요.
-     현재는 입력값을 검증하고 안내 메시지를 보여줍니다.
-  -------------------------------------------------- */
+  /* ---------- 문의 폼 처리 ---------- */
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
+  var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
   if (form && status) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -207,14 +213,50 @@
       if (!scope) { setStatus("원하는 범위를 선택해 주세요.", false); return; }
       if (!note) { setStatus("고민 또는 요청사항을 적어 주세요.", false); return; }
 
-      // 실제 연동 전까지의 임시 동작: 안내 + 초기화
-      setStatus("보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.", true);
-      form.reset();
-      if (typeOther) typeOther.hidden = true;
-      compressedPhotos.forEach(function (photo) { URL.revokeObjectURL(photo.url); });
-      compressedPhotos = [];
-      renderPreviews();
+      // 폼 기본 사진 입력값 대신, 압축된 이미지를 첨부
+      data.delete("photos");
+      compressedPhotos.forEach(function (photo, i) {
+        data.append("photo" + (i + 1), photo.blob, photo.name);
+      });
+
+      if (!FORM_ENDPOINT) {
+        // 전송 주소가 아직 설정되지 않은 경우: 안내 + 초기화만 수행
+        setStatus("보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.", true);
+        resetForm();
+        return;
+      }
+
+      if (submitBtn) submitBtn.disabled = true;
+      setStatus("전송 중입니다...", true);
+
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            setStatus("보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.", true);
+            resetForm();
+          } else {
+            setStatus("전송에 실패했어요. 잠시 후 다시 시도해 주세요.", false);
+          }
+        })
+        .catch(function () {
+          setStatus("전송에 실패했어요. 네트워크 상태를 확인해 주세요.", false);
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
+  }
+
+  function resetForm() {
+    form.reset();
+    if (typeOther) typeOther.hidden = true;
+    compressedPhotos.forEach(function (photo) { URL.revokeObjectURL(photo.url); });
+    compressedPhotos = [];
+    renderPreviews();
   }
 
   function setStatus(msg, ok) {
