@@ -13,7 +13,7 @@
   --clay:    #FF5A1F;   /* orange point */
   --clay-soft: rgba(255, 90, 31, 0.10);
 
-  --serif: "Fraunces", "Pretendard", serif;
+  --serif: "Newsreader", "Pretendard", serif;
   --sans:  "Pretendard", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --wrap: 1160px;
@@ -54,6 +54,27 @@ em { font-style: italic; }
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.03em;
+}
+
+/* ---------- 영문 캡션 ---------- */
+.en {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 0.6em;
+}
+.en.inline {
+  display: inline;
+  margin-top: 0;
+  margin-left: 0.6em;
+  text-transform: none;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  font-size: 0.85em;
 }
 
 /* ---------- buttons ---------- */
@@ -440,6 +461,7 @@ em { font-style: italic; }
 }
 .contact-inner--single { grid-template-columns: 1fr; max-width: 56ch; }
 .contact .section-title { color: var(--paper); }
+.contact .en { color: rgba(255,255,255,0.55); }
 .contact-sub { margin-top: 1.4rem; color: rgba(255,255,255,0.65); font-size: 1.1rem; }
 .portfolio-cta { margin-top: 2.4rem; }
 
@@ -492,6 +514,68 @@ em { font-style: italic; }
 .chip input:focus-visible + span { outline: 2px solid var(--paper); outline-offset: 2px; }
 .form-status { font-size: 0.95rem; color: var(--clay); min-height: 1.2em; }
 .form-status.ok { color: #8fd19e; }
+
+/* ============ 팀 / 참여 디자이너 ============ */
+.team-lead { margin-top: 1.6rem; max-width: 62ch; }
+.team-grid-section { padding-top: 0; }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+.team-card { display: block; }
+.team-photo {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--paper-2), #e6e6e4);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.2rem;
+}
+.team-photo span {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 2.6rem;
+  color: rgba(255, 90, 31, 0.5);
+}
+.team-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.team-role { margin-top: 0.6rem; font-size: 0.95rem; color: var(--ink-2); }
+.team-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+.team-contact:hover { border-color: var(--clay); }
+
+/* ---------- 프로젝트 상세 내 참여 디자이너 ---------- */
+.project-team-en { margin-bottom: clamp(28px, 4vw, 44px); }
+.project-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 220px));
+  gap: clamp(20px, 3vw, 32px);
+}
+.project-team-card {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.2s ease;
+}
+.project-team-card:hover { opacity: 0.7; }
+.project-team-card .team-photo { aspect-ratio: 1 / 1; margin-bottom: 1rem; }
+.project-team-card .team-photo span { font-size: 1.8rem; }
+.project-team-card .team-name { font-size: 1.15rem; }
 
 /* ============ 프로젝트 상세 ============ */
 .back-link {
@@ -658,6 +742,8 @@ em { font-style: italic; }
   .cases { grid-template-columns: 1fr; }
   .contact-inner { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .project-team-grid { grid-template-columns: repeat(2, 1fr); max-width: none; }
   .project-row,
   .project-row.is-reverse { grid-template-columns: 1fr; }
   .project-row.is-reverse .project-row-media { order: 0; }
@@ -688,6 +774,8 @@ em { font-style: italic; }
   .hero-cta { flex-direction: column; align-items: stretch; }
   .hero-cta .btn { width: 100%; }
   .portfolio-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .project-team-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
