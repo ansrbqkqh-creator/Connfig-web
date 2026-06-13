@@ -76,6 +76,7 @@ em { font-style: italic; }
   letter-spacing: 0.02em;
   font-size: 0.85em;
 }
+.en.thin { font-weight: 300; }
 
 /* ---------- buttons ---------- */
 .btn {
