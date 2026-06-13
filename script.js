@@ -10,7 +10,7 @@
      그 주소를 아래 빈 칸에 넣으면 문의 폼이 실제로 작동합니다.
      비워두면(="") 화면에는 정상처럼 보이지만 실제로는 전송되지 않습니다.
   -------------------------------------------------- */
-  var FORM_ENDPOINT = "";
+  var FORM_ENDPOINT = "https://formspree.io/f/xjgdpler";
 
   /* ---------- 현재 연도 ---------- */
   var yearEl = document.getElementById("year");
