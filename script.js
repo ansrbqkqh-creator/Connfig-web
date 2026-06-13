@@ -16,6 +16,21 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- PDF로 받기 (브라우저 인쇄 기능 이용) ---------- */
+  var printDateEl = document.getElementById("printDate");
+  if (printDateEl) {
+    var today = new Date();
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    printDateEl.textContent = "Generated " + today.getFullYear() + "." + pad(today.getMonth() + 1) + "." + pad(today.getDate());
+  }
+
+  var pdfBtn = document.getElementById("pdfExportBtn");
+  if (pdfBtn) {
+    pdfBtn.addEventListener("click", function () {
+      window.print();
+    });
+  }
+
   /* ---------- 모바일 내비게이션 ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");

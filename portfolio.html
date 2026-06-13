@@ -18,21 +18,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
+
+  <!-- ============ PDF 표지 (PDF로 받을 때만 표시) ============ -->
+  <div class="print-cover" aria-hidden="true">
+    <p class="print-cover-mark">co<span class="nn">nn</span>fig</p>
+    <p class="print-cover-title">포트폴리오<br /><span class="en">Portfolio</span></p>
+    <p class="print-cover-tag">머무름을 만든 기록들 — Records of creating dwelling.</p>
+    <p class="print-cover-meta">상업 · 오피스 인테리어 &nbsp;|&nbsp; 기획 · 설계 · 시공</p>
+    <p class="print-cover-date" id="printDate"></p>
+  </div>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="wordmark" href="index.html" aria-label="connfig 홈">co<span class="nn">nn</span>fig</a>
       <nav class="nav" aria-label="주요 메뉴">
-        <a href="index.html#direction">방향성</a>
-        <a href="index.html#work">사례</a>
-        <a href="portfolio.html" aria-current="page">포트폴리오</a>
-        <a href="team.html">팀</a>
-        <a href="index.html#process">과정</a>
-        <a href="index.html#contact" class="nav-cta">문의하기</a>
+        <a href="index.html#direction">방향성<span class="nav-en">Direction</span></a>
+        <a href="index.html#work">사례<span class="nav-en">Work</span></a>
+        <a href="portfolio.html" aria-current="page">포트폴리오<span class="nav-en">Portfolio</span></a>
+        <a href="team.html">팀<span class="nav-en">Team</span></a>
+        <a href="index.html#process">과정<span class="nav-en">Process</span></a>
+        <a href="index.html#contact" class="nav-cta">문의하기<span class="nav-en">Contact</span></a>
       </nav>
       <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
         <span></span><span></span>
@@ -50,6 +59,9 @@
         각 공간이 풀어야 했던 문제와, connfig가 그것을 어떻게 구성했는지를 기록합니다.
         아래 사례는 자리 채우기용 예시이며, 실제 프로젝트 사진과 데이터로 차례로 교체될 예정입니다.
       </p>
+      <button type="button" id="pdfExportBtn" class="btn btn-ghost pdf-export-btn reveal">
+        포트폴리오 PDF로 받기 <span class="en inline">Download as PDF</span>
+      </button>
     </div>
   </section>
 
@@ -149,6 +161,6 @@
   <!-- ============ 플로팅 상담 버튼 ============ -->
   <a href="#contact" class="float-contact"><span class="nn">nn</span> 상담 문의</a>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
