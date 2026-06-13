@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
 
@@ -234,7 +234,9 @@
           <div class="chips" role="radiogroup" aria-label="공간 유형">
             <label class="chip"><input type="radio" name="type" value="상업" /><span>상업</span></label>
             <label class="chip"><input type="radio" name="type" value="오피스" /><span>오피스</span></label>
+            <label class="chip"><input type="radio" name="type" value="기타" /><span>기타</span></label>
           </div>
+          <input type="text" id="typeOther" name="typeOther" class="field-other" placeholder="공간 유형을 직접 입력해 주세요" hidden />
         </div>
 
         <div class="field">
@@ -251,8 +253,18 @@
         </div>
 
         <div class="field">
-          <label class="field-label" for="note">한 줄 고민</label>
-          <textarea id="note" name="note" rows="3" placeholder="이 공간이 풀어야 할 문제를 한 줄로 적어 주세요."></textarea>
+          <label class="field-label" for="note">고민 / 요청사항</label>
+          <textarea id="note" name="note" rows="6" placeholder="이 공간이 풀어야 할 문제, 원하는 분위기, 일정 등을 자유롭게 적어 주세요. 길게 적으셔도 좋습니다."></textarea>
+        </div>
+
+        <div class="field">
+          <span class="field-label">현장 사진 / 참고 이미지 <span class="field-optional">(선택)</span></span>
+          <label class="file-drop" for="photos" id="fileDrop">
+            <span class="file-drop-title">사진을 선택하거나 끌어다 놓아 주세요</span>
+            <span class="file-drop-hint">최대 5장 · 자동으로 용량을 줄여서 보내드립니다</span>
+          </label>
+          <input type="file" id="photos" name="photos" accept="image/*" multiple hidden />
+          <div class="file-previews" id="filePreviews" aria-live="polite"></div>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">connfig에 보내기</button>
@@ -271,6 +283,9 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <!-- ============ 플로팅 상담 버튼 ============ -->
+  <a href="#contact" class="float-contact"><span class="nn">nn</span> 상담 문의</a>
+
+  <script src="script.js?v=5"></script>
 </body>
 </html>
