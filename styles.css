@@ -913,21 +913,6 @@ em { font-style: italic; }
 
 /* ============ PDF 표지 (PDF로 받을 때만 표시) ============ */
 .print-cover { display: none; }
-.print-cover-mark {
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  margin-bottom: 2.4rem;
-}
-.print-cover-title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(2.6rem, 9vw, 4.6rem);
-  line-height: 1.2;
-  margin-bottom: 1.2rem;
-}
-.print-cover-tag { color: var(--ink-2); font-size: 1.05rem; margin-bottom: 0.6rem; }
-.print-cover-meta { color: var(--ink-2); font-size: 0.85rem; }
-.print-cover-date { color: var(--ink-2); font-size: 0.8rem; margin-top: 2.4rem; }
 
 /* ---------- PDF 내보내기 버튼 ---------- */
 .pdf-export-btn { font-family: inherit; margin-top: 1.6rem; }
@@ -1017,9 +1002,11 @@ em { font-style: italic; }
   .logo-lab-row { flex-direction: column; }
 }
 
-/* ============ 인쇄 / PDF 출력 ============ */
+/* ============ 인쇄 / PDF 출력 (A3 가로) ============ */
 @media print {
-  @page { margin: 16mm 14mm; }
+  @page { size: A3 landscape; margin: 16mm 18mm; }
+
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 
   .site-header,
   .nav-toggle,
@@ -1033,29 +1020,111 @@ em { font-style: italic; }
     display: none !important;
   }
 
-  body { background: #fff; color: #111; }
+  body { background: #fff; color: #111; font-size: 13px; }
 
   .reveal { opacity: 1 !important; transform: none !important; }
 
-  .section { padding: 20px 0; border-top: none; }
+  .wrap { max-width: none; padding-inline: 0; }
 
+  .section { padding: 26px 0; border-top: none; }
+
+  /* ---------- 표지 ---------- */
   .print-cover {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 90vh;
-    text-align: center;
+    justify-content: space-between;
+    min-height: 100vh;
     page-break-after: always;
   }
+  .print-cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .print-cover-brand {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .print-cover-main {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    flex: 1;
+    padding: 64px 0;
+  }
+  .print-cover-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1.18;
+  }
+  .print-cover-en {
+    margin-top: 20px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-style: italic;
+    color: var(--ink-2);
+  }
+  .print-cover-visual {
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--paper-2), #ddddda);
+    display: grid;
+    place-items: center;
+  }
+  .print-cover-visual span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 6rem;
+    color: rgba(255, 90, 31, 0.45);
+  }
+  .print-cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+  .print-cover-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .print-cover-tag { font-size: 11px; color: var(--ink-2); }
+  .print-cover-date { font-size: 10px; color: var(--ink-2); }
 
-  .portfolio-grid,
-  .team-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  /* ---------- 본문 ---------- */
+  .portfolio-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .team-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .portfolio-thumb { aspect-ratio: 5 / 4; }
+
+  .project-row {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    page-break-inside: avoid;
+    page-break-after: always;
+  }
+  .project-row:last-of-type { page-break-after: auto; }
+  .project-row.is-reverse { grid-template-columns: 1fr 1.2fr; }
+  .project-row-title { font-size: 32px; }
+  .project-index-label { font-size: 12px; }
 
   .portfolio-card,
   .team-card,
-  .project-row,
-  .step,
   .case {
     break-inside: avoid;
   }
