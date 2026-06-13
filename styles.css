@@ -393,13 +393,24 @@ em { font-style: italic; }
 .case-meta { font-weight: 600; font-size: 1.05rem; margin-bottom: 1.1rem; }
 .case-meta span { color: var(--ink-2); font-weight: 400; font-size: 0.9rem; }
 .case-narrative { display: grid; gap: 0.7rem; }
-.case-narrative > div { display: grid; grid-template-columns: 3.2em 1fr; gap: 0.6rem; align-items: baseline; }
+.case-narrative > div { display: grid; grid-template-columns: 3.2em 1fr; gap: 0.6rem; align-items: start; }
 .case-narrative dt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--clay);
   letter-spacing: 0.03em;
   padding-top: 0.15em;
+}
+.case-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9em;
+  letter-spacing: 0;
+  color: var(--ink-2);
 }
 .case-narrative dd { color: var(--ink-2); font-size: 0.96rem; }
 .case-result { color: var(--ink) !important; font-weight: 500; }
