@@ -31,7 +31,7 @@
         <a href="portfolio.html">포트폴리오<span class="nav-en">Portfolio</span></a>
         <a href="team.html" aria-current="page">팀<span class="nav-en">Team</span></a>
         <a href="index.html#process">과정<span class="nav-en">Process</span></a>
-        <a href="index.html#contact" class="nav-cta">문의하기<span class="nav-en">Contact</span></a>
+        <a href="#contact" class="nav-cta">문의하기<span class="nav-en">Contact</span></a>
       </nav>
       <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false">
         <span></span><span></span>
@@ -102,15 +102,63 @@
     </div>
   </section>
 
-  <!-- ============ 문의 유도 ============ -->
+  <!-- ============ 문의 ============ -->
   <section class="section contact" id="contact">
-    <div class="wrap contact-inner contact-inner--single">
+    <div class="wrap contact-inner">
       <div class="contact-head reveal">
         <p class="section-index light">n05 — 문의</p>
         <h2 class="section-title">당신의 공간은<br />어떤 편안함을 가지고 싶나요? <span class="en inline thin">What comfort do you want for your space?</span></h2>
         <p class="contact-sub">짧게 적어 주세요. 첫 상담은 여기서 시작됩니다.</p>
-        <a href="index.html#contact" class="btn btn-primary portfolio-cta">connfig에 문의하기</a>
       </div>
+
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <input type="hidden" name="_subject" value="connfig 홈페이지 문의" />
+        <div class="field">
+          <span class="field-label">공간 유형</span>
+          <div class="chips" role="radiogroup" aria-label="공간 유형">
+            <label class="chip"><input type="radio" name="type" value="상업" /><span>상업</span></label>
+            <label class="chip"><input type="radio" name="type" value="오피스" /><span>오피스</span></label>
+            <label class="chip"><input type="radio" name="type" value="기타" /><span>기타</span></label>
+          </div>
+          <input type="text" id="typeOther" name="typeOther" class="field-other" placeholder="공간 유형을 직접 입력해 주세요" hidden />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="area">대략 평수</label>
+          <input type="text" id="area" name="area" placeholder="예: 30평" />
+        </div>
+
+        <div class="field">
+          <span class="field-label">원하는 범위</span>
+          <div class="chips" role="radiogroup" aria-label="원하는 범위">
+            <label class="chip"><input type="radio" name="scope" value="설계만" /><span>설계만</span></label>
+            <label class="chip"><input type="radio" name="scope" value="설계+시공" /><span>설계 + 시공</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="contactInfo">연락받을 방법 <span class="field-optional">(선택)</span></label>
+          <input type="text" id="contactInfo" name="contactInfo" placeholder="이메일, 전화번호, 인스타 아이디 등 편하신 방법으로" />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="note">고민 / 요청사항</label>
+          <textarea id="note" name="note" rows="6" placeholder="이 공간이 풀어야 할 문제, 원하는 분위기, 일정 등을 자유롭게 적어 주세요. 길게 적으셔도 좋습니다."></textarea>
+        </div>
+
+        <div class="field">
+          <span class="field-label">현장 사진 / 참고 이미지 <span class="field-optional">(선택)</span></span>
+          <label class="file-drop" for="photos" id="fileDrop">
+            <span class="file-drop-title">사진을 선택하거나 끌어다 놓아 주세요</span>
+            <span class="file-drop-hint">최대 5장 · 자동으로 용량을 줄여서 보내드립니다</span>
+          </label>
+          <input type="file" id="photos" name="photos" accept="image/*" multiple hidden />
+          <div class="file-previews" id="filePreviews" aria-live="polite"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">connfig에 보내기</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 

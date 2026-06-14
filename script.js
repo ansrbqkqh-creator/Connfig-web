@@ -254,7 +254,17 @@
             setStatus("보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.", true);
             resetForm();
           } else {
-            setStatus("전송에 실패했어요. 잠시 후 다시 시도해 주세요.", false);
+            res.json().then(function (body) {
+              var detail = "";
+              if (body && Array.isArray(body.errors) && body.errors.length) {
+                detail = body.errors.map(function (e) { return e.message; }).join(" / ");
+              } else if (body && body.error) {
+                detail = body.error;
+              }
+              setStatus("전송에 실패했어요" + (detail ? " (" + detail + ")" : "") + ". 잠시 후 다시 시도해 주세요.", false);
+            }).catch(function () {
+              setStatus("전송에 실패했어요. 잠시 후 다시 시도해 주세요.", false);
+            });
           }
         })
         .catch(function () {
