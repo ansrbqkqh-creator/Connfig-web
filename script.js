@@ -228,11 +228,12 @@
       if (!scope) { setStatus("원하는 범위를 선택해 주세요.", false); return; }
       if (!note) { setStatus("고민 또는 요청사항을 적어 주세요.", false); return; }
 
-      // 폼 기본 사진 입력값 대신, 압축된 이미지를 첨부
+      // 사진 파일은 전송하지 않음 (현재 폼 요금제에서는 파일 첨부 전송이 지원되지 않음)
       data.delete("photos");
-      compressedPhotos.forEach(function (photo, i) {
-        data.append("photo" + (i + 1), photo.blob, photo.name);
-      });
+      var photoCount = compressedPhotos.length;
+      if (photoCount) {
+        data.append("photoNote", photoCount + "장의 사진을 첨부했으나 자동 전송되지 않았습니다. 고객에게 별도로 사진을 요청해 주세요.");
+      }
 
       if (!FORM_ENDPOINT) {
         // 전송 주소가 아직 설정되지 않은 경우: 안내 + 초기화만 수행
@@ -251,7 +252,11 @@
       })
         .then(function (res) {
           if (res.ok) {
-            setStatus("보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.", true);
+            var msg = "보내주셔서 감사합니다. 곧 connfig가 연락드리겠습니다.";
+            if (photoCount) {
+              msg += " 첨부하신 사진은 자동으로 전송되지 않았어요. 카카오톡이나 이메일로 함께 보내주시면 더 좋아요.";
+            }
+            setStatus(msg, true);
             resetForm();
           } else {
             res.json().then(function (body) {
