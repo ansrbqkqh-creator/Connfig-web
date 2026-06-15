@@ -619,7 +619,6 @@ em { font-style: italic; }
 .form-status.ok { color: #8fd19e; }
 
 /* ============ 플로팅 상담 버튼 ============ */
-/* TODO: 카카오톡 채널/오픈채팅 링크가 준비되면 href를 교체하세요. */
 .float-contact {
   position: fixed;
   right: clamp(14px, 4vw, 28px);
