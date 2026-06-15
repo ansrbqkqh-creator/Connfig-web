@@ -476,6 +476,141 @@ em { font-style: italic; }
 .portfolio-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.4rem; }
 .portfolio-meta { color: var(--ink-2); font-size: 0.9rem; }
 
+/* ============ 가이드 (정보 페이지) ============ */
+.guide-head { padding-bottom: clamp(20px, 3vw, 36px); }
+.guide-lead { margin-top: 1.6rem; max-width: 64ch; }
+
+.guide-section .section-title { margin-bottom: 1.1rem; }
+.guide-intro {
+  color: var(--ink-2);
+  font-size: clamp(1.02rem, 1.5vw, 1.16rem);
+  max-width: 62ch;
+  margin-bottom: clamp(34px, 5vw, 60px);
+}
+
+/* ---------- 체크리스트 2단 카드 ---------- */
+.guide-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: start;
+}
+.guide-card {
+  padding: clamp(26px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.guide-card.is-flag { background: var(--paper-2); }
+.guide-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.guide-card-en {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  margin-bottom: 1.8rem;
+}
+
+.checklist { list-style: none; display: grid; gap: 1.2rem; }
+.checklist li {
+  display: grid;
+  grid-template-columns: 1.6em 1fr;
+  gap: 0.7rem;
+  align-items: start;
+}
+.checklist li::before {
+  font-family: var(--serif);
+  font-weight: 600;
+  text-align: center;
+  width: 1.55em;
+  height: 1.55em;
+  line-height: 1.55em;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  margin-top: 0.1em;
+}
+.checklist.is-check li::before { content: "✓"; color: var(--clay); background: var(--clay-soft); }
+.checklist.is-flag li::before { content: "!"; color: var(--paper); background: var(--ink); }
+.checklist b { display: block; font-weight: 600; font-size: 1rem; }
+.checklist p { color: var(--ink-2); font-size: 0.92rem; margin-top: 0.15rem; }
+
+/* ---------- 공정 단계 타임라인 ---------- */
+.guide-steps { list-style: none; display: grid; gap: 0; max-width: 780px; }
+.guide-stage {
+  position: relative;
+  padding: 0 0 clamp(30px, 4vw, 48px) clamp(26px, 4vw, 40px);
+  border-left: 2px solid var(--line);
+}
+.guide-stage:last-child { border-left-color: transparent; padding-bottom: 0; }
+.guide-stage::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--clay);
+  box-shadow: 0 0 0 4px var(--paper);
+}
+.guide-stage-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+.guide-stage-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  line-height: 1.2;
+}
+.guide-stage-en { font-size: 0.82rem; font-style: italic; color: var(--ink-2); }
+.guide-stage-dur {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--clay);
+  background: var(--clay-soft);
+  padding: 0.25em 0.85em;
+  border-radius: 999px;
+}
+.guide-stage-desc { color: var(--ink-2); margin-bottom: 0.85rem; }
+.guide-stage-check {
+  font-size: 0.94rem;
+  color: var(--ink);
+  background: var(--paper-2);
+  border-left: 2px solid var(--clay);
+  border-radius: 0 10px 10px 0;
+  padding: 0.85em 1.1em;
+}
+.guide-stage-check b { color: var(--clay); font-weight: 600; }
+.guide-note { margin-top: clamp(28px, 4vw, 44px); font-size: 0.88rem; color: var(--ink-2); max-width: 60ch; }
+
+/* ---------- 마무리 callout ---------- */
+.guide-closing {
+  text-align: center;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(40px, 7vw, 76px) clamp(20px, 5vw, 48px);
+}
+.guide-closing .section-title { margin-bottom: 0; }
+.guide-closing p {
+  color: var(--ink-2);
+  max-width: 48ch;
+  margin: 1.2rem auto 2.2rem;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+}
+.guide-closing-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
 /* ---------- 6. contact ---------- */
 .contact { background: var(--ink); color: var(--paper); border-top: none; }
 .contact-inner {
@@ -866,6 +1001,7 @@ em { font-style: italic; }
   .steps { grid-template-columns: 1fr 1fr; }
   .cases { grid-template-columns: 1fr; }
   .contact-inner { grid-template-columns: 1fr; }
+  .guide-cards { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .project-team-grid { grid-template-columns: repeat(2, 1fr); max-width: none; }
